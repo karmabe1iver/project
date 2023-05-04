@@ -174,17 +174,20 @@ class HomeView extends GetView<HomeController> {
                                              SizedBox(height: Get.height*.04,),
                                             Container(
                                               decoration: BoxDecoration(
-                                                  color: Colors.transparent,
+                                                  color: Colors.grey.shade400,
                                                   shape: BoxShape.circle),
                                               child: Padding(
-                                                padding: const EdgeInsets.all(4),
+                                                padding: const EdgeInsets.all(12),
                                                 child:
                                                 Center(
-                                                    child: Image.network(
-                                                        controller
-                                                            .Data![int]
-                                                            .categoryImage
-                                                            .toString())),
+                                                    child: CircleAvatar(
+                                                      backgroundColor: Colors.transparent,
+                                                      backgroundImage: NetworkImage(
+                                                          controller
+                                                              .Data![int]
+                                                              .categoryImage
+                                                              .toString()),
+                                                    )),
                                               ),
                                             ),
                                             SizedBox(
