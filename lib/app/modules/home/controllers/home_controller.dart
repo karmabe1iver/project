@@ -54,7 +54,7 @@ class HomeController extends GetxController {
   }
 
   ///------------------Button Status---------------------------
-  Rx<bool> status=true.obs;
+  Rx<bool> status=false.obs;
 
   @override
   void onInit() {
