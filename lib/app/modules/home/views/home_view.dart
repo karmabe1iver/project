@@ -40,6 +40,7 @@ class HomeView extends GetView<HomeController> {
                   ),
                   GestureDetector(
                     onTap: () {
+                      controller.address.value='loading.......';
                       controller.CurrentLocation();
                     },
                     child: Obx(
