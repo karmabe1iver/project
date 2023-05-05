@@ -38,30 +38,27 @@ class HomeController extends GetxController {
     address.value =
         '${placemarks[0].subLocality} , ${placemarks[0].locality} , ${placemarks[0].administrativeArea} , ${placemarks[0].country}';
   }
+
   ///------------------Current Loctation Ends-----------------
-  List<Welcome>? Data= <Welcome>[].obs;
+
+  List<Welcome> Data = <Welcome>[].obs;
+
   getData() async {
-    if (status.value == false){
-      Data = (await RemoteServices().getPost());
-
-  }else{
-      Data = (await RemoteServices().getPost1());
-
-
-  }
-
-
+    if (status.value == false) {
+      Data = (await RemoteServices().getProduct())!;
+    } else {
+      Data = (await RemoteServices().getSevice())!;
+    }
   }
 
   ///------------------Button Status---------------------------
-  Rx<bool> status=false.obs;
+  Rx<bool> status = false.obs;
 
   @override
   void onInit() {
     getData();
     super.onInit();
     CurrentLocation();
-
   }
 
   @override
@@ -74,5 +71,3 @@ class HomeController extends GetxController {
     super.onClose();
   }
 }
-
-class address {}

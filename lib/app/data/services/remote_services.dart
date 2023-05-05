@@ -8,7 +8,7 @@ import 'package:http/http.dart 'as http;
 import '../api_model.dart';
 
 class RemoteServices{
-  Future<List<Welcome>?> getPost() async{
+  Future<List<Welcome>?> getProduct() async{
     var client= http.Client();
     var uri= Uri.parse('https://be2c-2405-201-f006-60f7-2308-2e78-a01d-2ce.ngrok-free.app/api/v1/zedzat/product-category/?category_type=product' );
     var reponse= await client.get(uri);
@@ -23,7 +23,7 @@ class RemoteServices{
     else{
       Get.snackbar('${reponse.statusCode.toString()}','error');
     }
-  }Future<List<Welcome>?> getPost1() async{
+  }Future<List<Welcome>?> getSevice() async{
     var client= http.Client();
     var uri= Uri.parse('https://be2c-2405-201-f006-60f7-2308-2e78-a01d-2ce.ngrok-free.app/api/v1/zedzat/product-category/?category_type=service' );
     var reponse= await client.get(uri);

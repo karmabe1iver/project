@@ -155,10 +155,10 @@ class HomeView extends GetView<HomeController> {
                           } else if (snapshot.connectionState ==
                               ConnectionState.done) {
                             if (snapshot.hasError) {
-                              return const Text('Error');
+                              return Center(child: const Text('No Data'));
                             } else {
                               return Container(
-                                child: GridView.builder(
+                                child: controller.Data.length!=0? GridView.builder(
                                     scrollDirection: Axis.horizontal,
                                     gridDelegate:
                                         SliverGridDelegateWithFixedCrossAxisCount(
@@ -166,7 +166,7 @@ class HomeView extends GetView<HomeController> {
                                       childAspectRatio: 3,
                                       mainAxisSpacing: Get.width * .08,
                                     ),
-                                    itemCount: controller.Data!.length,
+                                    itemCount: controller.Data.length,
                                     itemBuilder: (context, int) {
                                       return Container(
                                         child: Column(
@@ -184,7 +184,7 @@ class HomeView extends GetView<HomeController> {
                                                       backgroundColor: Colors.transparent,
                                                       backgroundImage: NetworkImage(
                                                           controller
-                                                              .Data![int]
+                                                              .Data[int]
                                                               .categoryImage
                                                               .toString()),
                                                     )),
@@ -194,7 +194,7 @@ class HomeView extends GetView<HomeController> {
                                               height: Get.height * .05,
                                             ),
                                             Text(
-                                              controller.Data![int].categoryName
+                                              controller.Data[int].categoryName
                                                   .toString(),
                                               style: TextStyle(
                                                   fontSize: Get.height * .011,
@@ -203,62 +203,18 @@ class HomeView extends GetView<HomeController> {
                                           ],
                                         ),
                                       );
-                                    }),
+                                    }):Center(child: Text('No data'),),
                               );
                             }
                           }
                           return Container();
-                          //   child: GridView.builder(
-                          //       scrollDirection: Axis.horizontal,
-                          //       gridDelegate:
-                          //           SliverGridDelegateWithFixedCrossAxisCount(
-                          //         crossAxisCount: 2,
-                          //         childAspectRatio: 3,
-                          //         mainAxisSpacing: Get.width * .08,
-                          //       ),
-                          //       itemCount: controller.Data!.length,
-                          //       itemBuilder: (context, int) {
-                          //         return Container(
-                          //           child: Column(
-                          //             children: [
-                          //               // SizedBox(height: Get.height*.04,),
-                          //               Container(
-                          //                 decoration: BoxDecoration(
-                          //                     color: Colors.grey,
-                          //                     shape: BoxShape.circle),
-                          //                 child: Padding(
-                          //                   padding: const EdgeInsets.all(24),
-                          //                   child: SizedBox(),
-                          //                   // Center(
-                          //                   //     child: Image.network(
-                          //                   //         controller
-                          //                   //             .Data![int]
-                          //                   //             .categoryImage
-                          //                   //             .toString())),
-                          //                 ),
-                          //               ),
-                          //               SizedBox(
-                          //                 height: Get.height * .05,
-                          //               ),
-                          //               Text(
-                          //                 controller.Data![int].categoryName
-                          //                     .toString(),
-                          //                 style: TextStyle(
-                          //                     fontSize: Get.height * .011,
-                          //                     fontWeight: FontWeight.w300),
-                          //               ),
-                          //             ],
-                          //           ),
-                          //         );
-                          //       }),
-                          // );
                         }),
                   )),
             ],
           ),
         ),
         bottomNavigationBar: BottomAppBar(
-          child: Container(
+          child: SizedBox(
             height: Get.height * .08,
             width: double.infinity,
             child: FittedBox(
